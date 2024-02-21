@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 // define clothing item schema
-const newsarticles = new mongoose.Schema({
+const newsArticles = new mongoose.Schema({
   keyword: {
     type: String,
     required: true,
@@ -48,4 +48,4 @@ const newsarticles = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("clothingitems", clothingitems);
+module.exports = mongoose.model("newsitems", newsArticles);
