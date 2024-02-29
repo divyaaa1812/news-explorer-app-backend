@@ -18,5 +18,16 @@
   "bugs": {
     "url": "https://github.com/divyaaa1812/news-explorer-app-backend/issues"
   },
-  "homepage": "https://github.com/divyaaa1812/news-explorer-app-backend#readme"
+  "homepage": "https://github.com/divyaaa1812/news-explorer-app-backend#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "prettier": "^3.2.5"
+  }
 }

@@ -44,7 +44,8 @@ const newsArticles = new mongoose.Schema({
   owner: {
     required: true,
     type: mongoose.ObjectId,
-    ref: "user",
+    // ref: "user",
+    default: "hidden",
   },
 });
 
