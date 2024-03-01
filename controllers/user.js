@@ -1,6 +1,10 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const users = require("../models/user");
+const UnauthorizedError = require("../errors/unauthorizedError");
+const BadRequestError = require("../errors/badRequestError");
+const NotFoundError = require("../errors/notFoundError");
+const ConflictError = require("../errors/conflictError");
 
 const createUser = (req, res, next) => {
   const { name, email, password } = req.body;
@@ -53,4 +57,5 @@ const getCurrentUser = (req, res, next) => {
 
 module.exports = {
   getCurrentUser,
+  createUser,
 };
