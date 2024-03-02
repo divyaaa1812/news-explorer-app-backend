@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const Users = require("../models/user");
 const BadRequestError = require("../errors/badRequestError");
 const ConflictError = require("../errors/conflictError");
+const UnauthorizedError = require("../errors/unauthorizedError");
+const { JWT_SECRET } = require("../utils/config");
 
 const createUser = (req, res, next) => {
   const { name, email, password } = req.body;
@@ -36,10 +38,28 @@ const createUser = (req, res, next) => {
     });
 };
 
+const login = (req, res, next) => {
+  const { email, password } = req.body;
+  return Users.findUserByCredentials(email, password)
+    .then((registereduser) => {
+      // create a token
+      const token = jwt.sign({ _id: registereduser._id }, JWT_SECRET, {
+        expiresIn: "7d",
+      });
+      res.status(201).send({ token });
+    })
+    .catch((e) => {
+      if (e.message === "Incorrect email or password") {
+        next(new UnauthorizedError("Invalid login"));
+      } else {
+        next(e);
+      }
+    });
+};
+
 const getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
   Users.findById(userId)
-    .orFail()
     .then((currentuser) => {
       console.log(currentuser);
       res.send(currentuser);
@@ -58,4 +78,5 @@ const getCurrentUser = (req, res, next) => {
 module.exports = {
   getCurrentUser,
   createUser,
+  login,
 };

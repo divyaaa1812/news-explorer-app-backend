@@ -41,12 +41,12 @@ const newsArticles = new mongoose.Schema({
       message: "Link is not valid",
     },
   },
-  // owner: {
-  //   required: true,
-  //   type: mongoose.ObjectId,
-  //   // ref: "user",
-  //   default: "hidden",
-  // },
+  owner: {
+    required: true,
+    type: mongoose.ObjectId,
+    ref: "user",
+    default: "hidden",
+  },
 });
 
 module.exports = mongoose.model("newsitems", newsArticles);
