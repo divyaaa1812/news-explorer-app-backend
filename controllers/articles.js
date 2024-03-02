@@ -1,8 +1,8 @@
 const SavedArticle = require("../models/article");
 const BadRequestError = require("../errors/badRequestError");
 
-const addSavedArticles = (req, res, next) => {
-  const { keyword, title, text, date, source, link, image, owner } = req.body;
+const addSavedArticle = (req, res, next) => {
+  const { keyword, title, text, date, source, link, image } = req.body;
   SavedArticle.create({
     keyword,
     title,
@@ -22,6 +22,17 @@ const addSavedArticles = (req, res, next) => {
       } else {
         next(e);
       }
+    });
+};
+
+const getItems = (req, res, next) => {
+  SavedArticle.find({})
+    .then((items) => {
+      res.send(items);
+    })
+    .catch((e) => {
+      console.log(e.message);
+      next(e);
     });
 };
 
@@ -52,4 +63,4 @@ const deleteSavedArticle = (req, res, next) => {
       }
     });
 };
-module.exports = { addSavedArticles, deleteSavedArticle };
+module.exports = { addSavedArticle, getItems, deleteSavedArticle };

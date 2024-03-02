@@ -38,7 +38,7 @@ const createUser = (req, res, next) => {
     });
 };
 
-const login = (req, res, next) => {
+const loginUser = (req, res, next) => {
   const { email, password } = req.body;
   return Users.findUserByCredentials(email, password)
     .then((registereduser) => {
@@ -78,5 +78,5 @@ const getCurrentUser = (req, res, next) => {
 module.exports = {
   getCurrentUser,
   createUser,
-  login,
+  loginUser,
 };
