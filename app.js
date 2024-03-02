@@ -6,7 +6,9 @@ const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
-const { PORT = 3001 } = process.env;
+const { PORT = 3002 } = process.env;
+
+console.log(process.env.NODE_ENV);
 
 mongoose.connect("mongodb://127.0.0.1:27017/newsxplorer_db", () => {
   console.log("connected to DB");
