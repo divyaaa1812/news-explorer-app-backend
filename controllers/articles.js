@@ -1,5 +1,7 @@
 const SavedArticle = require("../models/article");
 const BadRequestError = require("../errors/badRequestError");
+const ForbiddenError = require("../errors/forbiddenError");
+const NotFoundError = require("../errors/notFoundError");
 
 const addSavedArticle = (req, res, next) => {
   const { keyword, title, text, date, source, link, image } = req.body;

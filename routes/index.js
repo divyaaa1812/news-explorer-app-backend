@@ -1,26 +1,16 @@
 const router = require("express").Router();
 const users = require("./user");
 const articles = require("./articles");
-const {
-  createUser,
-  getCurrentUser,
-  loginUser,
-} = require("../controllers/user");
-const {
-  addSavedArticle,
-  deleteSavedArticle,
-  getItems,
-} = require("../controllers/articles");
+const { createUser, loginUser } = require("../controllers/user");
+
 const NotFoundError = require("../errors/notFoundError");
 const handleAuthorization = require("../middlewares/auth");
 
-router.post("/signup", createUser);
-router.get("/users/me", handleAuthorization, getCurrentUser);
-router.post("/signin", loginUser);
+router.use("/users", handleAuthorization, users);
+router.use("/articles", articles);
 
-router.post("/articles", handleAuthorization, addSavedArticle);
-router.get("/articles", getItems);
-router.delete("/articles/:articleId", handleAuthorization, deleteSavedArticle);
+router.post("/signup", createUser);
+router.post("/signin", loginUser);
 
 router.use((req, res, next) => {
   next(new NotFoundError("Resource not found"));
