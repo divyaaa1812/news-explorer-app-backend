@@ -1,10 +1,8 @@
-const articles = require("../routes/articles");
 const SavedArticle = require("../models/article");
 const BadRequestError = require("../errors/badRequestError");
-const NotFoundError = require("../errors/notFoundError");
-const ForbiddenError = require("../errors/forbiddenError");
 
 const getUserSavedArticles = (req, res, next) => {
+  const { keyword, title, text, date, source, link, image } = req.body;
   SavedArticle.create({ keyword, title, text, date, source, link, image })
     .then((savednews) => {
       res.send({ data: savednews });
