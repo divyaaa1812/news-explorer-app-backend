@@ -22,4 +22,4 @@ React JS, Express, MongoDB
 
 ### Website Link
 
-- [Backend hosted at](api.nx.csproject.org)
+- Backend hosted at - https://api.nx.csproject.org

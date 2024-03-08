@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-// define clothing item schema
 const newsArticles = new mongoose.Schema({
   keyword: {
     type: String,

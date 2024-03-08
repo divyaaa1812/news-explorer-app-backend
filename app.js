@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
+const { errors } = require("celebrate");
 
 const app = express();
 const { PORT = 3002 } = process.env;
@@ -19,6 +20,7 @@ app.use(requestLogger);
 app.use(routes);
 // enabling the error logger
 app.use(errorLogger);
+app.use(errors());
 // centralized error handler
 app.use(errorHandler);
 app.listen(PORT, () => {
