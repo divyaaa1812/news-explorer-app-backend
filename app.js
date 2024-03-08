@@ -11,8 +11,12 @@ const rateLimiter = require("./middlewares/expressratelimit");
 const app = express();
 const { PORT = 3002 } = process.env;
 console.log(process.env.NODE_ENV);
+const dbUrl =
+  process.env.NODE_ENV === "production"
+    ? ""
+    : "mongodb://127.0.0.1:27017/newsxplorer_db";
 
-mongoose.connect("mongodb://127.0.0.1:27017/newsxplorer_db", () => {
+mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
 
