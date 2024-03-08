@@ -8,7 +8,7 @@ const handleAuthorization = require("../middlewares/auth");
 
 // router.post("/saved-news", addSavedArticles);
 router.post("/", handleAuthorization, addSavedArticle);
-router.get("/", getSavedArticles);
+router.get("/", handleAuthorization, getSavedArticles);
 router.delete("/:articleId", handleAuthorization, deleteSavedArticle);
 
 module.exports = router;

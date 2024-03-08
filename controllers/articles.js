@@ -46,7 +46,7 @@ const deleteSavedArticle = (req, res, next) => {
     .then((item) => {
       // If logged in user is not owner of the item
       if (userId !== item.owner.toString()) {
-        next(new ForbiddenError("No Access to perform this action"));
+        return next(new ForbiddenError("No Access to perform this action"));
       }
       // else find by item id and delete
       return SavedArticle.findByIdAndDelete(articleId)
