@@ -27,8 +27,8 @@ const addSavedArticle = (req, res, next) => {
     });
 };
 
-const getItems = (req, res, next) => {
-  SavedArticle.find({})
+const getSavedArticles = (req, res, next) => {
+  SavedArticle.find({ owner: req.user._id })
     .then((items) => {
       res.send(items);
     })
@@ -65,4 +65,4 @@ const deleteSavedArticle = (req, res, next) => {
       }
     });
 };
-module.exports = { addSavedArticle, getItems, deleteSavedArticle };
+module.exports = { addSavedArticle, getSavedArticles, deleteSavedArticle };
