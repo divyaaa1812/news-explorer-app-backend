@@ -16,6 +16,12 @@ const dbUrl =
     ? ""
     : "mongodb://127.0.0.1:27017/newsxplorer_db";
 
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Server will crash now");
+  }, 0);
+});
+
 mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
