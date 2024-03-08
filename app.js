@@ -2,19 +2,14 @@ require("dotenv").config();
 const helmet = require("helmet");
 const express = require("express");
 const mongoose = require("mongoose");
+const { errors } = require("celebrate");
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 const { requestLogger, errorLogger } = require("./middlewares/logger");
-const { errors } = require("celebrate");
-const rateLimit = require("express-rate-limit");
+const rateLimiter = require("./middlewares/expressratelimit");
 
 const app = express();
 const { PORT = 3002 } = process.env;
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // in 15 minutes
-  max: 100, // you can make a maximum of 100 requests from one IP
-});
-
 console.log(process.env.NODE_ENV);
 
 mongoose.connect("mongodb://127.0.0.1:27017/newsxplorer_db", () => {
@@ -31,7 +26,7 @@ app.use(errors());
 // centralized error handler
 app.use(errorHandler);
 // applying the rate-limiter
-app.use(limiter);
+app.use(rateLimiter);
 app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
 });

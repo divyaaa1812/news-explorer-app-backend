@@ -60,4 +60,5 @@ module.exports = {
   validateAuth,
   validateUserLogin,
   validateCreateUser,
+  validateUrl,
 };
