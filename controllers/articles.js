@@ -2,6 +2,7 @@ const SavedArticle = require("../models/article");
 const BadRequestError = require("../errors/badRequestError");
 const ForbiddenError = require("../errors/forbiddenError");
 const NotFoundError = require("../errors/notFoundError");
+const statusCode = require("../utils/constants");
 
 const addSavedArticle = (req, res, next) => {
   const { keyword, title, text, date, source, link, image } = req.body;
@@ -52,7 +53,7 @@ const deleteSavedArticle = (req, res, next) => {
       return SavedArticle.findByIdAndDelete(articleId)
         .orFail()
         .then(() => {
-          res.status(200).send({ message: "200 Ok" });
+          res.status(statusCode.SUCCESS).send({ message: "200 Ok" });
         });
     })
     .catch((e) => {
