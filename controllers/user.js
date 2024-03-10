@@ -16,7 +16,6 @@ const createUser = (req, res, next) => {
       if (existingUser) {
         next(new ConflictError("This email already exists in Database"));
       } else {
-        console.log(password);
         bcrypt.hash(password, 10).then((hash) =>
           Users.create({ name, email, password: hash })
             .then((newUser) => {
@@ -69,7 +68,6 @@ const getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
   Users.findById(userId)
     .then((currentuser) => {
-      console.log(currentuser);
       res.send(currentuser);
     })
     .catch((e) => {

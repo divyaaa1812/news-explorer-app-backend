@@ -57,8 +57,6 @@ const validateId = celebrate({
 
 module.exports = {
   validateId,
-  validateAuth,
   validateUserLogin,
   validateCreateUser,
-  validateUrl,
 };
