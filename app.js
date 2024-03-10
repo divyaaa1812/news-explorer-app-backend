@@ -30,14 +30,14 @@ mongoose.connect(dbUrl, () => {
 app.use(express.json());
 app.use(helmet());
 app.use(requestLogger);
+// applying the rate-limiter
+app.use(rateLimiter);
 app.use(routes);
 // enabling the error logger
 app.use(errorLogger);
 app.use(errors());
 // centralized error handler
 app.use(errorHandler);
-// applying the rate-limiter
-app.use(rateLimiter);
 app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);
 });
