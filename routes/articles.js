@@ -10,7 +10,7 @@ const handleErrors = require("../middlewares/errorHandler");
 
 // router.post("/saved-news", addSavedArticles);
 router.post("/", handleAuthorization, addSavedArticle);
-router.get("/", handleAuthorization, handleErrors, getSavedArticles);
+router.get("/", handleAuthorization, getSavedArticles);
 router.delete(
   "/:articleId",
   handleAuthorization,
