@@ -1,12 +1,12 @@
 const { Joi, celebrate } = require("celebrate");
-const validator = require("validator");
+// const validator = require("validator");
 
-const validateUrl = (value, helpers) => {
-  if (validator.isURL(value)) {
-    return value;
-  }
-  return helpers.error("string.uri");
-};
+// const validateUrl = (value, helpers) => {
+//   if (validator.isURL(value)) {
+//     return value;
+//   }
+//   return helpers.error("string.uri");
+// };
 
 const validateCreateUser = celebrate({
   body: Joi.object().keys({
@@ -32,17 +32,17 @@ const validateUserLogin = celebrate({
   }),
 });
 
-const validateAuth = celebrate({
-  body: Joi.object().keys({
-    email: Joi.string().required().email().messages({
-      "string.empty": 'The "email" field must be filled in',
-      "string.email": 'The "email" field must be a valid email',
-    }),
-    password: Joi.string()
-      .required()
-      .messages({ "string.empty": 'The "password" field must be filled in' }),
-  }),
-});
+// const validateAuth = celebrate({
+//   body: Joi.object().keys({
+//     email: Joi.string().required().email().messages({
+//       "string.empty": 'The "email" field must be filled in',
+//       "string.email": 'The "email" field must be a valid email',
+//     }),
+//     password: Joi.string()
+//       .required()
+//       .messages({ "string.empty": 'The "password" field must be filled in' }),
+//   }),
+// });
 
 const validateId = celebrate({
   params: Joi.object().keys({
