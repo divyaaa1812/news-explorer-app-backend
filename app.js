@@ -11,6 +11,7 @@ const rateLimiter = require("./middlewares/expressratelimit");
 const app = express();
 const { PORT = 3002 } = process.env;
 console.log(process.env.NODE_ENV);
+
 const dbUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.nx.csproject.org"
