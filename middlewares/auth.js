@@ -3,6 +3,7 @@ const { JWT_SECRET } = require("../utils/config");
 const UnauthorizedError = require("../errors/unauthorizedError");
 
 const handleAuthorization = (req, res, next) => {
+  console.log(JWT_SECRET);
   // get authorization from the header
   const { authorization } = req.headers;
 
