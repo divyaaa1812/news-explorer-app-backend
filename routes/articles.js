@@ -5,10 +5,13 @@ const {
   getSavedArticles,
 } = require("../controllers/articles");
 const handleAuthorization = require("../middlewares/auth");
-const { validateId } = require("../middlewares/validation");
+const {
+  validateId,
+  validateSavedArticle,
+} = require("../middlewares/validation");
 
 // router.post("/saved-news", addSavedArticles);
-router.post("/", handleAuthorization, addSavedArticle);
+router.post("/", handleAuthorization, validateSavedArticle, addSavedArticle);
 router.get("/", handleAuthorization, getSavedArticles);
 router.delete(
   "/:articleId",
