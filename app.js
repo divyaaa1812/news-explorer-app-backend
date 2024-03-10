@@ -13,7 +13,7 @@ const { PORT = 3002 } = process.env;
 console.log(process.env.NODE_ENV);
 const dbUrl =
   process.env.NODE_ENV === "production"
-    ? ""
+    ? "https://api.nx.csproject.org"
     : "mongodb://127.0.0.1:27017/newsxplorer_db";
 
 app.get("/crash-test", () => {
