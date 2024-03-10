@@ -9,12 +9,12 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 const rateLimiter = require("./middlewares/expressratelimit");
 
 const app = express();
-const { PORT = 3002 } = process.env;
+const { PORT = 3002, database } = process.env;
 console.log(process.env.NODE_ENV);
 
 const dbUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.nx.csproject.org"
+    ? database
     : "mongodb://127.0.0.1:27017/newsxplorer_db";
 
 app.get("/crash-test", () => {

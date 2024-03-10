@@ -46,7 +46,7 @@ const validateUserLogin = celebrate({
 
 const validateId = celebrate({
   params: Joi.object().keys({
-    itemId: Joi.string()
+    articleId: Joi.string()
       .length(24)
       .regex(/^[A-Fa-f0-9]{24}$/)
       .messages({
