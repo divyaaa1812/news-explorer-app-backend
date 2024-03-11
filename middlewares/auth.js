@@ -3,7 +3,6 @@ const { JWT_SECRET } = require("../utils/config");
 const UnauthorizedError = require("../errors/unauthorizedError");
 
 const handleAuthorization = (req, res, next) => {
-  console.log(JWT_SECRET);
   // get authorization from the header
   const { authorization } = req.headers;
 
@@ -15,7 +14,10 @@ const handleAuthorization = (req, res, next) => {
   const token = authorization.replace("Bearer ", "");
   let payload;
   try {
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(
+      token,
+      process.env.NODE_ENV === "production" ? JWT_SECRET : "secret-key-dev",
+    );
   } catch {
     next(new UnauthorizedError("authorization error"));
   }

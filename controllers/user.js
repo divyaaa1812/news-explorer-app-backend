@@ -48,7 +48,7 @@ const loginUser = (req, res, next) => {
       // create a token
       const token = jwt.sign(
         { _id: registereduser._id },
-        process.env.NODE_ENV === "production" ? JWT_SECRET : "dev-secret",
+        process.env.NODE_ENV === "production" ? JWT_SECRET : "secret-key-dev",
         {
           expiresIn: "7d",
         },
