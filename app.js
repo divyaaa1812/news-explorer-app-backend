@@ -1,6 +1,7 @@
 require("dotenv").config();
 const helmet = require("helmet");
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const { errors } = require("celebrate");
 const routes = require("./routes");
@@ -26,6 +27,14 @@ app.get("/crash-test", () => {
 mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
+
+app.use(
+  cors({
+    origin: "*",
+    methods: "*",
+  }),
+);
+app.options("*", cors());
 
 app.use(express.json());
 app.use(helmet());
