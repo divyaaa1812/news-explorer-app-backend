@@ -9,7 +9,7 @@ const { JWT_SECRET } = require("../utils/config");
 const statusCode = require("../utils/constants");
 
 const createUser = (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
   Users.findOne({ email })
     .select("+password")
     .then((existingUser) => {
@@ -17,11 +17,11 @@ const createUser = (req, res, next) => {
         next(new ConflictError("This email already exists in Database"));
       } else {
         bcrypt.hash(password, 10).then((hash) =>
-          Users.create({ name, email, password: hash })
+          Users.create({ username, email, password: hash })
             .then((newUser) => {
               res
                 .status(statusCode.SUCCESS)
-                .send({ name, email, _id: newUser._id });
+                .send({ username, email, _id: newUser._id });
             })
             .catch((e) => {
               if (e.name === "ValidationError") {
