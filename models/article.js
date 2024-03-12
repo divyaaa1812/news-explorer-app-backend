@@ -4,7 +4,6 @@ const validator = require("validator");
 const newsArticles = new mongoose.Schema({
   keyword: {
     type: String,
-    required: true,
     minlength: 2,
     maxlength: 30,
   },
@@ -12,11 +11,11 @@ const newsArticles = new mongoose.Schema({
     type: String,
     required: true,
   },
-  text: {
+  description: {
     type: String,
     required: true,
   },
-  date: {
+  publishedAt: {
     type: String,
     required: true,
   },
@@ -24,7 +23,7 @@ const newsArticles = new mongoose.Schema({
     type: String,
     required: true,
   },
-  link: {
+  url: {
     type: String,
     required: true,
     validate: {
@@ -32,13 +31,8 @@ const newsArticles = new mongoose.Schema({
       message: "Link is not valid",
     },
   },
-  image: {
+  urlToImage: {
     type: String,
-    required: true,
-    validate: {
-      validator: (value) => validator.isURL(value),
-      message: "Link is not valid",
-    },
   },
   owner: {
     required: true,

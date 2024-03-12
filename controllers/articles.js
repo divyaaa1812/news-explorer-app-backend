@@ -5,18 +5,20 @@ const NotFoundError = require("../errors/notFoundError");
 const statusCode = require("../utils/constants");
 
 const addSavedArticle = (req, res, next) => {
-  const { keyword, title, text, date, source, link, image } = req.body;
+  const { keyword, title, description, publishedAt, source, url, urlToImage } =
+    req.body;
   SavedArticle.create({
     keyword,
     title,
-    text,
-    date,
+    description,
+    publishedAt,
     source,
-    link,
-    image,
+    url,
+    urlToImage,
     owner: req.user._id,
   })
     .then((savednews) => {
+      console.log(savednews);
       res.send({ data: savednews });
     })
     .catch((e) => {
