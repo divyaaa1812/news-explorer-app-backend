@@ -5,9 +5,8 @@ const NotFoundError = require("../errors/notFoundError");
 const statusCode = require("../utils/constants");
 
 const addSavedArticle = (req, res, next) => {
-  const { keyword, title, description, publishedAt, source, url, urlToImage } =
-    req.body;
-  SavedArticle.create({
+  console.log(req);
+  const {
     keyword,
     title,
     description,
@@ -15,7 +14,18 @@ const addSavedArticle = (req, res, next) => {
     source,
     url,
     urlToImage,
+    bookmarks: key,
+  } = req.body;
+  SavedArticle.create({
+    keyword,
+    title,
+    description,
+    publishedAt,
+    source: source.name,
+    url,
+    urlToImage,
     owner: req.user._id,
+    bookmarks: key,
   })
     .then((savednews) => {
       console.log(savednews);
@@ -67,4 +77,5 @@ const deleteSavedArticle = (req, res, next) => {
       }
     });
 };
+
 module.exports = { addSavedArticle, getSavedArticles, deleteSavedArticle };

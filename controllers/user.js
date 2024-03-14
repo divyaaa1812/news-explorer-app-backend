@@ -66,6 +66,7 @@ const loginUser = (req, res, next) => {
 
 const getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
+  console.log(userId);
   Users.findById(userId)
     .then((currentuser) => {
       res.send(currentuser);

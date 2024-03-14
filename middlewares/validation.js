@@ -57,6 +57,8 @@ const validateId = celebrate({
 
 const validateSavedArticle = celebrate({
   body: Joi.object().keys({
+    author: Joi.string().allow(null),
+    content: Joi.string(),
     keyword: Joi.string().min(2).max(30).messages({
       "string.min": 'The minimum length of the "name" field is 2',
       "string.max": 'The maximum length of the "name" field is 30',
@@ -71,8 +73,11 @@ const validateSavedArticle = celebrate({
     publishedAt: Joi.date().required().messages({
       "string.empty": 'The "date" field must be filled in',
     }),
-    source: Joi.string().required().messages({
-      "string.empty": 'The "source" field must be filled in',
+    source: Joi.object().keys({
+      id: Joi.string().allow(null),
+      name: Joi.string().required().messages({
+        "string.empty": 'The "name" field must be filled in',
+      }),
     }),
     url: Joi.string().required().custom(validateUrl).messages({
       "string.empty": 'The "link" field must be filled in',

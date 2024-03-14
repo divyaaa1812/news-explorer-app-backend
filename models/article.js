@@ -40,6 +40,13 @@ const newsArticles = new mongoose.Schema({
     ref: "user",
     default: "hidden",
   },
+  bookmarks: [
+    {
+      type: mongoose.ObjectId,
+      ref: "user",
+      default: [],
+    },
+  ],
 });
 
 module.exports = mongoose.model("newsitems", newsArticles);
