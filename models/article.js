@@ -1,7 +1,11 @@
+const { boolean } = require("joi");
 const mongoose = require("mongoose");
 const validator = require("validator");
 
 const newsArticles = new mongoose.Schema({
+  key: {
+    type: String,
+  },
   keyword: {
     type: String,
     minlength: 2,
@@ -40,13 +44,6 @@ const newsArticles = new mongoose.Schema({
     ref: "user",
     default: "hidden",
   },
-  bookmarks: [
-    {
-      type: mongoose.ObjectId,
-      ref: "user",
-      default: [],
-    },
-  ],
 });
 
 module.exports = mongoose.model("newsitems", newsArticles);

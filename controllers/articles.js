@@ -5,8 +5,8 @@ const NotFoundError = require("../errors/notFoundError");
 const statusCode = require("../utils/constants");
 
 const addSavedArticle = (req, res, next) => {
-  console.log(req);
   const {
+    key,
     keyword,
     title,
     description,
@@ -14,9 +14,9 @@ const addSavedArticle = (req, res, next) => {
     source,
     url,
     urlToImage,
-    bookmarks: key,
   } = req.body;
   SavedArticle.create({
+    key,
     keyword,
     title,
     description,
@@ -25,7 +25,6 @@ const addSavedArticle = (req, res, next) => {
     url,
     urlToImage,
     owner: req.user._id,
-    bookmarks: key,
   })
     .then((savednews) => {
       console.log(savednews);
@@ -52,16 +51,11 @@ const getSavedArticles = (req, res, next) => {
 
 const deleteSavedArticle = (req, res, next) => {
   const { articleId } = req.params;
-  const userId = req.user._id;
   SavedArticle.findById(articleId)
     .orFail()
     .then((item) => {
-      // If logged in user is not owner of the item
-      if (userId !== item.owner.toString()) {
-        return next(new ForbiddenError("No Access to perform this action"));
-      }
-      // else find by item id and delete
-      return SavedArticle.findByIdAndDelete(articleId)
+      console.log(item);
+      return SavedArticle.findByIdAndDelete(item)
         .orFail()
         .then(() => {
           res.status(statusCode.SUCCESS).send({ message: "200 Ok" });
