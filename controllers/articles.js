@@ -50,16 +50,10 @@ const getSavedArticles = (req, res, next) => {
 };
 
 const deleteSavedArticle = (req, res, next) => {
-  const { articleId } = req.params;
-  SavedArticle.findById(articleId)
-    .orFail()
-    .then((item) => {
-      console.log(item);
-      return SavedArticle.findByIdAndDelete(item)
-        .orFail()
-        .then(() => {
-          res.status(statusCode.SUCCESS).send({ message: "200 Ok" });
-        });
+  const articleId = req.params;
+  SavedArticle.findOneAndDelete({ articleId })
+    .then(() => {
+      res.status(statusCode.SUCCESS).send({ message: "200 Ok" });
     })
     .catch((e) => {
       if (e.name === "DocumentNotFoundError") {
