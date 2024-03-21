@@ -83,6 +83,7 @@ const validateSavedArticle = celebrate({
       "string.max": 'The maximum length of the "name" field is 30',
       "string.empty": 'The "name" field must be filled in',
     }),
+    category: Joi.string(),
   }),
 });
 

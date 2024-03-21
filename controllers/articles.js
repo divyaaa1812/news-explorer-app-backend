@@ -14,6 +14,7 @@ const addSavedArticle = (req, res, next) => {
     source,
     url,
     urlToImage,
+    category,
   } = req.body;
   SavedArticle.create({
     key,
@@ -25,6 +26,7 @@ const addSavedArticle = (req, res, next) => {
     url,
     urlToImage,
     owner: req.user._id,
+    category,
   })
     .then((savednews) => {
       console.log(savednews);

@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 
 const newsArticles = new mongoose.Schema({
+  category: {
+    type: String,
+  },
   key: {
     type: String,
   },
