@@ -22,6 +22,8 @@ const handleAuthorization = (req, res, next) => {
     next(new UnauthorizedError("authorization error"));
   }
   req.user = payload;
+
+  res.header("Access-Control-Allow-Origin", "*");
   next();
 };
 
