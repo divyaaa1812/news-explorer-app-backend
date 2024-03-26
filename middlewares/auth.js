@@ -23,7 +23,6 @@ const handleAuthorization = (req, res, next) => {
   }
   req.user = payload;
 
-  res.header("Access-Control-Allow-Origin", "*");
   next();
 };
 
