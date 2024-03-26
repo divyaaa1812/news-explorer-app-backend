@@ -29,7 +29,7 @@ mongoose.connect(dbUrl, () => {
 });
 
 app.use(cors());
-app.options("*", cors());
+// app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
 app.use(requestLogger);
