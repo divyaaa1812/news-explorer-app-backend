@@ -30,19 +30,11 @@ mongoose.connect(dbUrl, () => {
 
 app.use(
   cors({
-    origin: "*", // Allow requests from this origin
+    origin: "*",
     methods: "*",
-    allowedHeaders: "*", // Allow only specified headers
   }),
 );
-
-// app.use(
-//   cors({
-//     origin: "*",
-//     methods: "*",
-//   }),
-// );
-// app.options("*", cors());
+app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
 app.use(requestLogger);
