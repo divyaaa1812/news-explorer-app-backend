@@ -19,6 +19,7 @@ const createUser = (req, res, next) => {
         bcrypt.hash(password, 10).then((hash) =>
           Users.create({ username, email, password: hash })
             .then((newUser) => {
+              res.header("Access-Control-Allow-Origin", "*");
               res
                 .status(statusCode.SUCCESS)
                 .send({ username, email, _id: newUser._id });
