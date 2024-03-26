@@ -30,9 +30,9 @@ mongoose.connect(dbUrl, () => {
 
 app.use(
   cors({
-    origin: "https://nx.csproject.org", // Allow requests from this origin
+    origin: "*", // Allow requests from this origin
     methods: "*",
-    allowedHeaders: "Content-Type,Authorization", // Allow only specified headers
+    allowedHeaders: "*", // Allow only specified headers
   }),
 );
 
