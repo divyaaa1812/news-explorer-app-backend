@@ -28,11 +28,7 @@ mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
 
-app.use(
-  cors({
-    origin: "*",
-  }),
-);
+app.use(cors());
 app.use(express.json());
 app.use(helmet());
 app.use(requestLogger);
