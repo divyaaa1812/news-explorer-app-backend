@@ -28,20 +28,20 @@ mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
 
-// app.use(
-//   cors({
-//     origin: "https://nx.csproject.org", // Allow requests from this origin
-//     methods: "GET,POST", // Allow only specified HTTP methods
-//     allowedHeaders: "Content-Type,Authorization", // Allow only specified headers
-//   }),
-// );
-
 app.use(
   cors({
-    origin: "*",
+    origin: "https://nx.csproject.org", // Allow requests from this origin
     methods: "*",
+    allowedHeaders: "Content-Type,Authorization", // Allow only specified headers
   }),
 );
+
+// app.use(
+//   cors({
+//     origin: "*",
+//     methods: "*",
+//   }),
+// );
 app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
