@@ -10,7 +10,7 @@ const statusCode = require("../utils/constants");
 
 const createUser = (req, res, next) => {
   const { username, email, password } = req.body;
-  console.log(username, email, password);
+  console.log(req.body);
   return Users.findOne({ email })
     .select("+password")
     .then((existingUser) => {
