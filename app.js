@@ -23,11 +23,12 @@ const dbUrl =
 //     throw new Error("Server will crash now");
 //   }, 0);
 // });
-let allowedOrigins = [
-  "https://nx.csproject.org",
-  "https://wtwrdivya.crabdance.com",
-];
+
 app.use((req, res, next) => {
+  let allowedOrigins = [
+    "https://nx.csproject.org",
+    "https://wtwrdivya.crabdance.com",
+  ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
