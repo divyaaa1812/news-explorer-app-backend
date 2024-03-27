@@ -27,16 +27,25 @@ let allowedOrigins = [
   "https://nx.csproject.org",
   "https://wtwrdivya.crabdance.com",
 ];
-let origin = req.headers.origin;
-if (allowedOrigins.includes(origin)) {
-  res.header("Access-Control-Allow-Origin", origin); // restrict it to the required domain
-}
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    return res.status(200).json({});
+  }
+  next();
+});
 
 mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 // app.use(helmet());
 app.use(requestLogger);
