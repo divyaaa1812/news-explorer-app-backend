@@ -10,12 +10,14 @@ const statusCode = require("../utils/constants");
 
 const createUser = (req, res, next) => {
   const { username, email, password } = req.body;
+  console.log(username, email, password);
   return Users.findOne({ email })
     .select("+password")
     .then((existingUser) => {
       if (existingUser) {
         next(new ConflictError("This email already exists in Database"));
       } else {
+        console.log("encoding password");
         bcrypt.hash(password, 10).then((hash) =>
           Users.create({ username, email, password: hash })
             .then((newUser) => {
