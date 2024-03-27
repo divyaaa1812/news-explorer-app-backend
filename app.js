@@ -29,7 +29,7 @@ mongoose.connect(dbUrl, () => {
 });
 
 app.use(cors({ Origin: "https://nx.csproject.org" }));
-app.options("*", cors({ Origin: "https://nx.csproject.org" }));
+// app.options("*", cors({ Origin: "https://nx.csproject.org" }));
 app.use(express.json());
 app.use(helmet());
 app.use(requestLogger);
