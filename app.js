@@ -23,13 +23,20 @@ const dbUrl =
 //     throw new Error("Server will crash now");
 //   }, 0);
 // });
+let allowedOrigins = [
+  "https://nx.csproject.org",
+  "https://wtwrdivya.crabdance.com",
+];
+let origin = req.headers.origin;
+if (allowedOrigins.includes(origin)) {
+  res.header("Access-Control-Allow-Origin", origin); // restrict it to the required domain
+}
 
 mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
 
 app.use(cors());
-// app.options("*", cors({ Origin: "https://nx.csproject.org" }));
 app.use(express.json());
 // app.use(helmet());
 app.use(requestLogger);
