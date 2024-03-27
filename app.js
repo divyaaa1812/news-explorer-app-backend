@@ -33,7 +33,7 @@ mongoose.connect(dbUrl, () => {
 //     origin: "https://nx.csproject.org",
 //   }),
 // );
-app.use(cors());
+app.use(cors({ origin: "https://nx.csproject.org" }));
 app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
