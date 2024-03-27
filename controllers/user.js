@@ -10,7 +10,7 @@ const statusCode = require("../utils/constants");
 
 const createUser = (req, res, next) => {
   const { username, email, password } = req.body;
-  Users.findOne({ email })
+  return Users.findOne({ email })
     .select("+password")
     .then((existingUser) => {
       if (existingUser) {
@@ -67,7 +67,7 @@ const loginUser = (req, res, next) => {
 const getCurrentUser = (req, res, next) => {
   const userId = req.user._id;
   console.log(userId);
-  Users.findById(userId)
+  return Users.findById(userId)
     .then((currentuser) => {
       res.send(currentuser);
     })
