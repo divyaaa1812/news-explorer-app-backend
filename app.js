@@ -18,20 +18,20 @@ const dbUrl =
     ? database
     : "mongodb://127.0.0.1:27017/newsxplorer_db";
 
-app.get("/crash-test", () => {
-  setTimeout(() => {
-    throw new Error("Server will crash now");
-  }, 0);
-});
+// app.get("/crash-test", () => {
+//   setTimeout(() => {
+//     throw new Error("Server will crash now");
+//   }, 0);
+// });
 
 mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
 
-// app.use(cors());
+app.use(cors());
 // app.options("*", cors({ Origin: "https://nx.csproject.org" }));
 app.use(express.json());
-app.use(helmet());
+// app.use(helmet());
 app.use(requestLogger);
 // applying the rate-limiter
 app.use(rateLimiter);
