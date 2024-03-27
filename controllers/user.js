@@ -9,7 +9,11 @@ const { JWT_SECRET } = require("../utils/config");
 const statusCode = require("../utils/constants");
 
 const createUser = (req, res, next) => {
-  const { username, email, password } = req.body;
+  const {
+    username = "test20005",
+    email = "test2005@gmail.com",
+    password = "1234567890",
+  } = req.body;
   console.log(req.body);
   return Users.findOne({ email })
     .select("+password")
