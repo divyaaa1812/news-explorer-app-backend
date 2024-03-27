@@ -33,6 +33,7 @@ app.use(
     origin: "https://nx.csproject.org",
   }),
 );
+app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
 app.use(requestLogger);
