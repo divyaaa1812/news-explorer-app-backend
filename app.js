@@ -18,6 +18,8 @@ const dbUrl =
     ? database
     : "mongodb://127.0.0.1:27017/newsxplorer_db";
 
+console.log(dbUrl);
+console.log(process.env);
 // app.get("/crash-test", () => {
 //   setTimeout(() => {
 //     throw new Error("Server will crash now");
