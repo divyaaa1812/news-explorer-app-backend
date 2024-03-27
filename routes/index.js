@@ -13,7 +13,8 @@ const handleAuthorization = require("../middlewares/auth");
 router.use("/users", handleAuthorization, users);
 router.use("/articles", articles);
 
-router.post("/signup", validateCreateUser, createUser);
+// router.post("/signup", validateCreateUser, createUser);
+router.post("/signup", createUser);
 router.post("/signin", validateUserLogin, loginUser);
 
 router.use((req, res, next) => {
