@@ -28,11 +28,11 @@ mongoose.connect(dbUrl, () => {
   console.log("connected to DB");
 });
 
-app.use(
-  cors({
-    origin: "https://nx.csproject.org",
-  }),
-);
+// app.use(
+//   cors({
+//     origin: "https://nx.csproject.org",
+//   }),
+// );
 app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
