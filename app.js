@@ -13,10 +13,11 @@ const app = express();
 const { PORT = 3002, database } = process.env;
 console.log(process.env.NODE_ENV);
 
-const dbUrl =
-  process.env.NODE_ENV === "production"
-    ? database
-    : "mongodb://127.0.0.1:27017/newsxplorer_db";
+// const dbUrl =
+//   process.env.NODE_ENV === "production"
+//     ? database
+//     : "mongodb://127.0.0.1:27017/newsxplorer_db";
+const dbUrl = "mongodb://127.0.0.1:27017/newsxplorer_db";
 
 console.log(dbUrl);
 console.log(process.env);
