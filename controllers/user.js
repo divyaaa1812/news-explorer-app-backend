@@ -48,13 +48,9 @@ const loginUser = (req, res, next) => {
   return Users.findUserByCredentials(email, password)
     .then((registereduser) => {
       // create a token
-      const token = jwt.sign(
-        { _id: registereduser._id },
-        process.env.NODE_ENV === "production" ? JWT_SECRET : "secret-key-dev",
-        {
-          expiresIn: "7d",
-        },
-      );
+      const token = jwt.sign({ _id: registereduser._id }, JWT_SECRET, {
+        expiresIn: "7d",
+      });
       res.status(201).send({ token });
     })
     .catch((e) => {
