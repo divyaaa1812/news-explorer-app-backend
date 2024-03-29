@@ -61,9 +61,7 @@ const validateSavedArticle = celebrate({
     title: Joi.string().required().messages({
       "string.empty": 'The "title" field must be filled in',
     }),
-    description: Joi.string().required().messages({
-      "string.empty": 'The "text" field must be filled in',
-    }),
+    description: Joi.string().allow(null),
     publishedAt: Joi.date().required().messages({
       "string.empty": 'The "date" field must be filled in',
     }),
