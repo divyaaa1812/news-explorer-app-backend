@@ -52,8 +52,8 @@ const getSavedArticles = (req, res, next) => {
 };
 
 const deleteSavedArticle = (req, res, next) => {
-  const articleId = req.params;
-  SavedArticle.findOneAndDelete({ articleId })
+  const { articleId: key } = req.params;
+  SavedArticle.findOneAndDelete({ key })
     .then(() => {
       res.status(statusCode.SUCCESS).send({ message: "200 Ok" });
     })
